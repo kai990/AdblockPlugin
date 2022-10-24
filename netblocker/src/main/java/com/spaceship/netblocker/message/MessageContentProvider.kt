@@ -6,7 +6,10 @@ import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import com.spaceship.netblocker.NetBlocker
+import com.spaceship.netblocker.launchEmptyActivity
 import com.spaceship.netblocker.utils.logw
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 
 class MessageContentProvider : ContentProvider() {
 
@@ -38,6 +41,10 @@ class MessageContentProvider : ContentProvider() {
 
     override fun call(method: String, arg: String?, extras: Bundle?): Bundle? {
         logw("", "call method:$method,arg:$arg,extras:$extras")
+        if(!NetBlocker.isInited()){
+            launchEmptyActivity()
+            runBlocking { delay(1000) }
+        }
         when (method) {
             COMMAND_START_VPN -> NetBlocker.startVpn()
             COMMAND_STOP_VPN -> NetBlocker.stopVpn()

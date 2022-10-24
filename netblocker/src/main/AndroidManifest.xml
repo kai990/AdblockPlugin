@@ -21,6 +21,9 @@
             <intent-filter>
                 <action android:name="android.net.VpnService" />
             </intent-filter>
+            <meta-data
+                android:name="android.net.VpnService.SUPPORTS_ALWAYS_ON"
+                android:value="true" />
         </service>
         <service
             android:name="com.spaceship.netblocker.vpn_v28.core.LocalVpnService"
@@ -34,6 +37,13 @@
 
         <activity
             android:name="com.spaceship.netblocker.VpnRequestActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:taskAffinity=""
+            android:theme="@style/Theme.AppCompat.Translucent" />
+
+        <activity
+            android:name="com.spaceship.netblocker.EmptyActivity"
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
             android:taskAffinity=""

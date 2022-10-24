@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
 import com.spaceship.netblocker.utils.DeviceStorageApp
+import com.spaceship.netblocker.utils.logd
 
 @SuppressLint("StaticFieldLeak")
 object Env {
@@ -14,13 +15,11 @@ object Env {
 
     private lateinit var storageContext: Context
     fun init(ctx: Context) {
+        logd("xxx","1")
         originContext = ctx
         context = originContext
-        storageContext = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            originContext
-        } else {
-            DeviceStorageApp(ctx)
-        }
+        storageContext = originContext
+        logd("xxx","2")
     }
 
     @JvmStatic

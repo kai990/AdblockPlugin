@@ -32,6 +32,8 @@ object NetBlocker {
         blockConfig.packageId = packageId
     }
 
+    fun isInited() = this::context.isInitialized
+
     fun startVpn() {
         startServiceInternal()
     }

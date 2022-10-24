@@ -12,6 +12,8 @@
  */
 package com.spaceship.netblocker.vpn;
 
+import static com.spaceship.netblocker.utils.LogKt.logd;
+
 import android.app.NotificationManager;
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -63,10 +65,12 @@ public class AdVpnService extends VpnService implements Handler.Callback {
     @Override
     public void onCreate() {
         super.onCreate();
+        logd("xxx","3");
         try {
             VpnForegroundNotification vpnNotification = NetBlocker.INSTANCE.getNotification();
             startForeground(vpnNotification.id(), vpnNotification.notification());
         } catch (Exception e) {
+            logd("xxx","4");
             e.printStackTrace();
         }
     }
@@ -113,11 +117,13 @@ public class AdVpnService extends VpnService implements Handler.Callback {
     }
 
     private void startVpn() {
+        logd("xxx","5");
         updateVpnStatus(VPN_STATUS_STARTING);
 
         registerReceiver(connectivityChangedReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
         if (prepare(this) != null) {
+            logd("xxx","6");
             startActivity(new Intent(this, VpnRequestActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             return;
         }
