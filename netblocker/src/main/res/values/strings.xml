@@ -1,5 +1,12 @@
 <resources>
-    <string name="app_name">netblocker</string>
+    <string name="app_name">Adblock plugin</string>
     <string name="vpn_permission_denied">Permission denied to create a VPN service</string>
     <string name="vpn_not_support">This device does not support VPN.</string>
+
+    <string name="nty_vpn_starting_title">Preparing to start protection</string>
+    <string name="nty_vpn_starting_content">Please wait…</string>
+    <string name="nty_vpn_stop_title">Blocking stopped</string>
+    <string name="nty_vpn_network_error_title">Network error</string>
+    <string name="nty_vpn_network_error_content">Waiting for network connection</string>
+    <string name="block_notification_channel_name">Ad block total notifications.</string>
 </resources>

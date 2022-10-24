@@ -5,11 +5,13 @@ import android.content.Intent
 import android.os.Build
 import android.text.format.DateUtils
 import com.spaceship.netblocker.model.DispatchPacket
+import com.spaceship.netblocker.notification.VpnNotification
 import com.spaceship.netblocker.vpn.AdVpnService
 import com.spaceship.netblocker.vpn.Command
 import com.spaceship.netblocker.vpn.VpnConfig
 import com.spaceship.netblocker.vpn_v28.core.LocalVpnService
 import com.spaceship.netblocker.utils.thread.ThreadPool.uiDelay
+
 
 /**
  * @author wangkai
@@ -21,7 +23,7 @@ object NetBlocker {
 
     val vpnConfig by lazy { VpnConfig(sessionName = "") }
 
-    private lateinit var notification: VpnForegroundNotification
+    private val notification by lazy { VpnNotification(context) }
 
     private val proxyDispatcher by lazy { ProxyDispatcher() }
 
@@ -65,10 +67,6 @@ object NetBlocker {
 
     fun getNotification(): VpnForegroundNotification {
         return notification
-    }
-
-    fun setNotification(notification: VpnForegroundNotification) {
-        this.notification = notification
     }
 
     /**

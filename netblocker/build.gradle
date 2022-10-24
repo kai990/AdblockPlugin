@@ -47,4 +47,5 @@ dependencies {
     implementation 'dnsjava:dnsjava:2.1.9'
     implementation 'com.parse.bolts:bolts-tasks:1.4.0'
     api 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
+    implementation "io.karn:notify:1.2.1"
 }
