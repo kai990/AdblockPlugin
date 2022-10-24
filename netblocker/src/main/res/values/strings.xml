@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">netblocker</string>
+    <string name="vpn_permission_denied">Permission denied to create a VPN service</string>
+    <string name="vpn_not_support">This device does not support VPN.</string>
+</resources>
