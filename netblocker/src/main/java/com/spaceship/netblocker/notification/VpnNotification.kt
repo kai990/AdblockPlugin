@@ -10,6 +10,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
+import android.os.Bundle
 import com.spaceship.netblocker.R
 import com.spaceship.netblocker.VpnForegroundNotification
 import com.spaceship.netblocker.utils.RR
@@ -73,13 +74,18 @@ class VpnNotification(
         notificationManager.notify(id(), createNotification(title, content, action))
     }
 
+    fun update(bundle: Bundle?) {
+        bundle ?: return
+        update(bundle.getString("title").orEmpty(), bundle.getString("content").orEmpty())
+    }
+
     fun cancel() {
         isCanceled = true
         notificationManager.cancel(id())
     }
 
     private fun createIntent(action: String): PendingIntent {
-        val intent = Intent().apply { component = ComponentName("com.spaceship.netprotect","com.spaceship.netprotect.page.home.MainActivity") }
+        val intent = Intent().apply { component = ComponentName("com.spaceship.netprotect", "com.spaceship.netprotect.page.home.MainActivity") }
         intent.action = action
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             PendingIntent.getActivity(context, 0, intent, FLAG_MUTABLE)

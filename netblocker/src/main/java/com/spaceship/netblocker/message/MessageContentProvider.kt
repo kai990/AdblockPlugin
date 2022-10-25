@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Bundle
 import com.spaceship.netblocker.NetBlocker
 import com.spaceship.netblocker.launchEmptyActivity
+import com.spaceship.netblocker.notification.VpnNotification
 import com.spaceship.netblocker.utils.logw
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
@@ -28,20 +29,16 @@ class MessageContentProvider : ContentProvider() {
     override fun query(
         uri: Uri, projection: Array<String>?, selection: String?,
         selectionArgs: Array<String>?, sortOrder: String?
-    ): Cursor? {
-        TODO("Implement this to handle query requests from clients.")
-    }
+    ): Cursor? = null
 
     override fun update(
         uri: Uri, values: ContentValues?, selection: String?,
         selectionArgs: Array<String>?
-    ): Int {
-        TODO("Implement this to handle requests to update one or more rows.")
-    }
+    ): Int = -1
 
     override fun call(method: String, arg: String?, extras: Bundle?): Bundle? {
         logw("", "call method:$method,arg:$arg,extras:$extras")
-        if(!NetBlocker.isInited()){
+        if (!NetBlocker.isInited()) {
             launchEmptyActivity()
             runBlocking { delay(1000) }
         }
@@ -49,8 +46,9 @@ class MessageContentProvider : ContentProvider() {
             COMMAND_START_VPN -> NetBlocker.startVpn()
             COMMAND_STOP_VPN -> NetBlocker.stopVpn()
             COMMAND_RESTART_VPN -> NetBlocker.restartVpn()
-            COMMAND_IS_VPN_CONNECTED -> return Bundle().apply { putBoolean("isConnected",NetBlocker.isVpnConnected()) }
-            COMMAND_UPDATE_BLOCK_APP_LIST->NetBlocker.setAllowedAppList(arg.orEmpty().split(","))
+            COMMAND_IS_VPN_CONNECTED -> return Bundle().apply { putBoolean("isConnected", NetBlocker.isVpnConnected()) }
+            COMMAND_UPDATE_BLOCK_APP_LIST -> NetBlocker.setAllowedAppList(arg.orEmpty().split(","))
+            COMMAND_UPDATE_NOTIFICATION -> (NetBlocker.getNotification() as? VpnNotification)?.update(extras)
         }
         return null
     }

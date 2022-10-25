@@ -15,6 +15,7 @@ const val COMMAND_IS_VPN_CONNECTED = "is_vpn_connected"
 const val COMMAND_VPN_STATUS = "vpn_status"
 const val COMMAND_DOMAIN_DISPATCH = "domain_dispatch"
 const val COMMAND_UPDATE_NOTIFICATION = "update_notification"
+const val COMMAND_CANCEL_NOTIFICATION = "cancel_notification"
 const val COMMAND_UPDATE_BLOCK_APP_LIST = "update_block_app_list"
 
 const val COMMAND_BOOLEAN_PARAM = "command_boolean_param"
