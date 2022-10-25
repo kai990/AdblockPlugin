@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 德语 -->
+    <string name="app_name">Adblock Browser Plugin</string>
+    <string name="congratulations">Herzlichen Glückwunsch</string>
+    <string name="plugin_desc">Diese Anwendung wird nur als Adblock-Plugin verwendet, um Browser-Werbung zu blockieren. Bitte kehren Sie zu Adblock zurück, aktivieren Sie den Blockiermodus (klicken Sie auf die Schild-Schaltfläche) und aktualisieren Sie dann den Browser.</string>
+    <string name="open_adblock">Adblock öffnen</string>
+</resources>

@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Adblock 瀏覽器插件</string>
+    <string name="congratulations">恭喜</string>
+    <string name="plugin_desc">此應用程序僅用作 Adblock 插件來阻止瀏覽器廣告。 請返回Adblock，開啟攔截模式（點擊盾牌按鈕），然後刷新瀏覽器。</string>
+    <string name="open_adblock">打開 Adblock</string>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Adblock ブラウザ プラグイン</string>
+    <string name="congratulations">おめでとうございます</string>
+    <string name="plugin_desc">このアプリケーションは、ブラウザの広告をブロックする Adblock プラグインとしてのみ使用されます。 Adblock に戻り、ブロック モードをオンにして (盾のボタンをクリック)、ブラウザを更新してください。</string>
+    <string name="open_adblock">Adblock を開く</string>
+</resources>

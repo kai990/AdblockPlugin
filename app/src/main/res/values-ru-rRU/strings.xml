@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 俄语 -->
+    <string name="app_name">Плагин Adblock для браузера</string>
+    <string name="congratulations">Поздравляем</string>
+    <string name="plugin_desc">Это приложение используется только как плагин Adblock для блокировки рекламы в браузере. Пожалуйста, вернитесь в Adblock, включите режим блокировки (нажмите кнопку щита), а затем обновите браузер.</string>
+    <string name="open_adblock">Открыть Adblock</string>
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 葡萄牙语 -->
+    <string name="app_name">Plugin do navegador Adblock</string>
+    <string name="congratulations">Parabéns</string>
+    <string name="plugin_desc">Este aplicativo é usado apenas como um plug-in Adblock para bloquear anúncios do navegador. Retorne ao Adblock, ative o modo de bloqueio (clique no botão de escudo) e atualize o navegador.</string>
+    <string name="open_adblock">Abrir Adblock</string>
+</resources>

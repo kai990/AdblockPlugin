@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Plug-in de navigateur Adblock</string>
+    <string name="congratulations">Félicitations</string>
+    <string name="plugin_desc">Cette application est uniquement utilisée comme plugin Adblock pour bloquer les publicités du navigateur. Veuillez retourner sur Adblock, activer le mode de blocage (cliquez sur le bouton du bouclier), puis actualiser le navigateur.</string>
+    <string name="open_adblock">Ouvrir Adblock</string>
+</resources>

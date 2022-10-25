@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 西班牙语 -->
+    <string name="app_name">Complemento de navegador Adblock</string>
+    <string name="congratulations">Felicitaciones</string>
+    <string name="plugin_desc">Esta aplicación solo se usa como un complemento de Adblock para bloquear los anuncios del navegador. Vuelva a Adblock, active el modo de bloqueo (haga clic en el botón de escudo) y luego actualice el navegador.</string>
+    <string name="open_adblock">Abrir Adblock</string>
+</resources>
