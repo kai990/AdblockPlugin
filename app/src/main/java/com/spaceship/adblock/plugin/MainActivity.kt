@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 }
 
 private fun MainActivity.openAdblock() {
-    val intent = packageManager.getLaunchIntentForPackage("com.spaceship.netprotect12")
+    val intent = packageManager.getLaunchIntentForPackage("com.spaceship.netprotect")
     if (intent == null) {
         openInMarket()
     } else {
