@@ -2,6 +2,7 @@ package com.spaceship.netblocker.model;
 
 import android.text.TextUtils;
 
+import com.google.gson.annotations.SerializedName;
 import com.spaceship.netblocker.vpn_v28.shadowsocks.core.NatSession;
 
 import org.pcap4j.packet.IpPacket;
@@ -14,10 +15,15 @@ import org.pcap4j.packet.UdpPacket;
  */
 public class DispatchPacket {
 
+    @SerializedName("domain")
     public String domain;
+    @SerializedName("port")
     public short port;
+    @SerializedName("startTime")
     public long startTime;
+    @SerializedName("pkg")
     public String pkg;
+    @SerializedName("isIpv4")
     public boolean isIpv4;
 
     public DispatchPacket(IpPacket packet, String domain) {

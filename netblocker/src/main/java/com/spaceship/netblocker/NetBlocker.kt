@@ -2,8 +2,10 @@ package com.spaceship.netblocker
 
 import android.app.Application
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Build
 import android.text.format.DateUtils
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.spaceship.netblocker.model.DispatchPacket
 import com.spaceship.netblocker.notification.VpnNotification
 import com.spaceship.netblocker.vpn.AdVpnService
@@ -30,6 +32,9 @@ object NetBlocker {
     fun init(context: Application, packageId: String) {
         this.context = context
         blockConfig.packageId = packageId
+
+        LocalBroadcastManager.getInstance(context)
+            .registerReceiver(VpnStatusReceiver(), IntentFilter(AdVpnService.VPN_UPDATE_STATUS_INTENT))
     }
 
     fun isInited() = this::context.isInitialized

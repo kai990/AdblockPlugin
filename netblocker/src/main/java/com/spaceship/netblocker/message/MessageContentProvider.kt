@@ -50,6 +50,7 @@ class MessageContentProvider : ContentProvider() {
             COMMAND_STOP_VPN -> NetBlocker.stopVpn()
             COMMAND_RESTART_VPN -> NetBlocker.restartVpn()
             COMMAND_IS_VPN_CONNECTED -> return Bundle().apply { putBoolean("isConnected",NetBlocker.isVpnConnected()) }
+            COMMAND_UPDATE_BLOCK_APP_LIST->NetBlocker.setAllowedAppList(arg.orEmpty().split(","))
         }
         return null
     }

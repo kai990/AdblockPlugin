@@ -1,5 +1,6 @@
 package com.spaceship.netblocker
 
+import com.spaceship.netblocker.message.dispatchDomain
 import com.spaceship.netblocker.model.DispatchPacket
 
 /**
@@ -19,7 +20,8 @@ class ProxyDispatcher {
         dispatchHandler?.let {
             return it.handleDispatch(packet)
         }
-        return TYPE_DIRECT
+
+        return dispatchDomain(packet)
     }
 
     fun setDispatchHandler(dispatchHandler: RequestDispatchHandler) {
