@@ -3,10 +3,7 @@ package com.spaceship.netblocker.utils
 import com.spaceship.netblocker.BuildConfig
 import com.spaceship.netblocker.utils.Slog
 
-/**
- * @author John
- * @since 2019-05-19 17:59
- */
+
 
 fun getApp(port: Int, isIpv4: Boolean = true): AppInfo? {
     AppInfoGetter.getAppInfo(port, isIpv4)?.let {
@@ -42,9 +39,7 @@ fun printApp(tag: String, port: Short) {
     printAppInner(tag, port, getApp(port)?.packageName)
 }
 
-/**
- * 似乎取不到系统应用
- */
+
 fun printAppInner(tag: String, port: Any, app: String?) {
     val pp = if (port is Short) {
         BitOperationUtils.shortToInt(port)

@@ -1,15 +1,4 @@
-/* Copyright (C) 2017 Julian Andres Klode <jak@jak-linux.org>
- *
- * Parsing code derived from AdBuster:
- * Copyright (C) 2016 Daniel Brodie <dbrodie@gmail.com>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, version 3.
- *
- * Contributions shall also be provided under any later versions of the
- * GPL.
- */
+
 package com.spaceship.netblocker.vpn;
 
 import androidx.annotation.NonNull;
@@ -22,18 +11,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 
-/**
- * Ensures that the connection is alive and sets various timeouts and delays in response.
- * <p>
- * The implementation is a bit weird: Success and Failure cases are both handled in the timeout
- * case. When a packet is received, we simply store the time.
- * <p>
- * If poll() times out and we have not seen a packet after we last sent a ping, then we force
- * a reconnect and increase the reconnect delay.
- * <p>
- * If poll() times out and we have seen a packet after we last sent a ping, we increase the
- * poll() time out, causing the next check to run later, and send a ping packet.
- */
+
 
 class VpnWatchdog {
     private static final String TAG = "VpnWatchDog";
@@ -60,9 +38,7 @@ class VpnWatchdog {
     private InetAddress target;
 
 
-    /**
-     * Returns the current poll time out.
-     */
+    
     int getPollTimeout() {
         if (!enabled)
             return -1;
@@ -71,19 +47,12 @@ class VpnWatchdog {
         return pollTimeout;
     }
 
-    /**
-     * Sets the target address ping packets should be sent to.
-     */
+    
     void setTarget(InetAddress target) {
         this.target = target;
     }
 
-    /**
-     * An initialization method. Sleeps the penalty and sends initial packet.
-     *
-     * @param enabled If the watchdog should be enabled.
-     * @throws InterruptedException If interrupted
-     */
+    
     void initialize(boolean enabled) throws InterruptedException {
         Slog.INSTANCE.d(TAG, "initialize: Initializing watchdog");
 
@@ -102,11 +71,7 @@ class VpnWatchdog {
         }
     }
 
-    /**
-     * Handles a timeout of poll()
-     *
-     * @throws AdVpnThread.VpnNetworkException When the watchdog timed out
-     */
+    
     void handleTimeout() throws AdVpnThread.VpnNetworkException {
         if (!enabled)
             return;
@@ -129,11 +94,7 @@ class VpnWatchdog {
         sendPacket();
     }
 
-    /**
-     * Handles an incoming packet on a device.
-     *
-     * @param packetData The data of the packet
-     */
+    
     void handlePacket(byte[] packetData) {
         if (!enabled)
             return;
@@ -142,18 +103,14 @@ class VpnWatchdog {
         lastPacketReceived = System.currentTimeMillis();
     }
 
-    /**
-     * Sends an empty check-alive packet to the configured target address.
-     *
-     * @throws AdVpnThread.VpnNetworkException If sending failed and we should restart
-     */
+    
     void sendPacket() throws AdVpnThread.VpnNetworkException {
         if (!enabled)
             return;
 
         Slog.INSTANCE.d(TAG, "sendPacket: Sending packet, poll timeout is " + pollTimeout);
 
-        DatagramPacket outPacket = new DatagramPacket(new byte[0], 0, 0 /* length */, target, 53);
+        DatagramPacket outPacket = new DatagramPacket(new byte[0], 0, 0 , target, 53);
         try {
             DatagramSocket socket = newDatagramSocket();
             socket.send(outPacket);

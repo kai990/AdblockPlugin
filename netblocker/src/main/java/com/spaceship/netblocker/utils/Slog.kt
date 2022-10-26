@@ -3,10 +3,7 @@ package com.spaceship.netblocker.utils
 import android.util.Log
 import com.spaceship.netblocker.BuildConfig
 
-/**
- * @author John
- * @since 2019-03-24 11:38
- */
+
 object Slog {
     private const val LEVEL_V = 0
     private const val LEVEL_D = 1

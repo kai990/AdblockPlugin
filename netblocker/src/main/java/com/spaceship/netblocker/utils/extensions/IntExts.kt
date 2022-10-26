@@ -1,9 +1,6 @@
 package com.spaceship.netblocker.utils.extensions
 
-/**
- * @author John
- * @since 2019-03-02 21:11
- */
+
 
 fun String?.toIntSafty(): Int {
     this?.let {

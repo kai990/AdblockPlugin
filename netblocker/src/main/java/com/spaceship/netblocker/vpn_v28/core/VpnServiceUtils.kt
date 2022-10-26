@@ -8,9 +8,7 @@ import android.system.OsConstants
 import com.spaceship.netblocker.NetBlocker
 import com.spaceship.netblocker.utils.Slog
 
-/**
- * @author wangkai
- */
+
 
 private const val TAG = "VpnServiceUtils"
 
@@ -46,7 +44,6 @@ internal fun establish(service: VpnService): ParcelFileDescriptor {
         val value = method.invoke(null, name) as String
         if (value.isNotEmpty() && !servers.contains(value)) {
             servers.add(value)
-            // 防止IPv6地址导致问题
             if (value.replace("\\d".toRegex(), "").length == 3) {
                 builder.addRoute(value, 32)
             } else {
@@ -60,7 +57,7 @@ internal fun establish(service: VpnService): ParcelFileDescriptor {
             return@with
         }
 
-        // 需要把自己加入代理，不然会无法进行网络连接
+
         builder.addAllowedApplication(packageId)
         Slog.d(TAG, "vpn pkg list:${allowedAppSet}")
         for (pkg in allowedAppSet) {

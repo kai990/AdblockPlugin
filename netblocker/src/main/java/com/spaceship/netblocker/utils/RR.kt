@@ -6,10 +6,7 @@ import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import com.spaceship.netblocker.Env
 
-/**
- * @author John
- * @since 2018-12-15 15:57
- */
+
 object RR {
     fun color(@ColorRes res: Int) = Env.getApp().resources.getColor(res)
 

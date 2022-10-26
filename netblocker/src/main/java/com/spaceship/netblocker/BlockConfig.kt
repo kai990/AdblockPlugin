@@ -1,8 +1,6 @@
 package com.spaceship.netblocker
 
-/**
- * @author wangkai
- */
+
 class BlockConfig(
     var packageId: String,
     // 白名单 （可以访问网络）

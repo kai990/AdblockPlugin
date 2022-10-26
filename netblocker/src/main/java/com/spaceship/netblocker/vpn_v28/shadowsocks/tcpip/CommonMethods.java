@@ -97,14 +97,14 @@ public class CommonMethods {
     }
 
     public static long getsum(byte[] buf, int offset, int len) {
-        long sum = 0; /* assume 32 bit long, 16 bit short */
+        long sum = 0; 
         while (len > 1) {
             sum += readShort(buf, offset) & 0xFFFF;
             offset += 2;
             len -= 2;
         }
 
-        if (len > 0) /* take care of left over byte */ {
+        if (len > 0)  {
             sum += (buf[offset] & 0xFF) << 8;
         }
         return sum;

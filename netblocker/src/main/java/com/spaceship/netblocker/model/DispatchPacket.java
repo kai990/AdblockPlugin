@@ -9,10 +9,7 @@ import org.pcap4j.packet.IpPacket;
 import org.pcap4j.packet.IpV6Packet;
 import org.pcap4j.packet.UdpPacket;
 
-/**
- * @author John
- * @since 2019-12-13 21:56
- */
+
 public class DispatchPacket {
 
     @SerializedName("domain")

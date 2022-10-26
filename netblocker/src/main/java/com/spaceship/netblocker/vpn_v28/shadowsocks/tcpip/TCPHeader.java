@@ -3,8 +3,8 @@ package com.spaceship.netblocker.vpn_v28.shadowsocks.tcpip;
 
 public class TCPHeader {
 
-    static final short offset_win = 14; // 16位窗口大小
-    static final short offset_urp = 18; // 16位紧急数据偏移量
+    static final short offset_win = 14;
+    static final short offset_urp = 18;
     private static final int FIN = 1;
     private static final int SYN = 2;
     private static final int RST = 4;

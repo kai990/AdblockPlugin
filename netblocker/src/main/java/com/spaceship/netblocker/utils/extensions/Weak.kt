@@ -3,10 +3,7 @@ package com.spaceship.netblocker.utils.extensions
 import java.lang.ref.WeakReference
 import kotlin.reflect.KProperty
 
-/**
- * @version 1.0
- * @since 2018-08-16 21:38
- */
+
 class Weak<T : Any>(initializer: () -> T?) {
     private var weakReference = WeakReference(initializer())
 

@@ -6,9 +6,7 @@ import com.spaceship.netblocker.model.DispatchPacket
 import com.spaceship.netblocker.vpn_v28.shadowsocks.core.NatSession
 import com.spaceship.netblocker.vpn_v28.shadowsocks.tcpip.CommonMethods
 
-/**
- * @author wangkai
- */
+
 private val FAKE_NETWORK_MASK = CommonMethods.ipStringToInt("255.255.0.0")
 private val FAKE_NETWORK_IP = CommonMethods.ipStringToInt("172.25.0.0")
 const val DNS_TTL = 60

@@ -1,9 +1,6 @@
 package com.spaceship.netblocker.utils.extensions
 
-/**
- * @author John
- * @since 2019-01-28 21:13
- */
+
 fun String?.upperFirst(length: Int): String? {
     if (!this.isNullOrEmpty()) {
         return "${this.substring(0, length).toUpperCase()}${this.substring(length)}"
@@ -29,9 +26,7 @@ fun String?.trimLeftNum(): String? {
     return this
 }
 
-/**
- * remove Zero Length Whitespace Unicode Character
- */
+
 fun String.removeZLWChar(): String {
     return this.replace("[\\p{Cf}]".toRegex(), "")
 }

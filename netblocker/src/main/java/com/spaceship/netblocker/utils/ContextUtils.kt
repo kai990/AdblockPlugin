@@ -11,9 +11,7 @@ import android.view.View
 import com.spaceship.netblocker.Env
 
 
-/**
- * @author wangkai
- */
+
 
 
 fun broadcastReceiver(callback: (Context, Intent) -> Unit): BroadcastReceiver = object : BroadcastReceiver() {
@@ -21,10 +19,7 @@ fun broadcastReceiver(callback: (Context, Intent) -> Unit): BroadcastReceiver = 
 }
 
 
-/**
- * 从给定的 view 向上寻找 activity 的 context。
- * 使用场景，有时候需要找到 activity 的引用，然而有时候 view 直接 getContent 并不是 Activity ，而是 [android.content.ContextWrapper] 的另外的子类
- */
+
 fun findActivity(view: View?): Activity? {
     return if (view == null) {
         null
@@ -49,7 +44,6 @@ fun isActivityAlive(activity: Activity?): Boolean {
 
 fun getActivityFromContext(context: Context): Activity? {
     var context = context
-    //如果传入的Context本身就是Activity的Context,那么 getBaseContext 可能拿到 ContextIml 导致返回null
     if (context is Activity) {
         return context
     }

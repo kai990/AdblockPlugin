@@ -8,10 +8,7 @@ import android.view.View
 import android.view.WindowManager
 import androidx.annotation.ColorInt
 
-/**
- * @author John
- * @since 2019-01-16 21:35
- */
+
 
 fun Context?.isActivityLive(): Boolean {
     val activity = this as? Activity ?: return false

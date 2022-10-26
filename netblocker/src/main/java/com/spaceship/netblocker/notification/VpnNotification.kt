@@ -19,10 +19,7 @@ import io.karn.notify.Notify
 
 const val ACTION_NONE = "action_none"
 
-/**
- * @author John
- * @since 2019-06-16 09:43
- */
+
 class VpnNotification(
     private val context: Context
 ) : VpnForegroundNotification {
@@ -35,9 +32,7 @@ class VpnNotification(
 
     private var isCanceled = false
 
-    /**
-     * 开始连接
-     */
+    
     override fun notification(): Notification {
         isCanceled = false
         return createNotification(

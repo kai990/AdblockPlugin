@@ -1,15 +1,4 @@
-/* Copyright (C) 2016-2019 Julian Andres Klode <jak@jak-linux.org>
- *
- * Derived from AdBuster:
- * Copyright (C) 2016 Daniel Brodie <dbrodie@gmail.com>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, version 3.
- *
- * Contributions shall also be provided under any later versions of the
- * GPL.
- */
+
 package com.spaceship.netblocker.vpn;
 
 
@@ -57,16 +46,16 @@ class AdVpnThread implements Runnable, DnsPacketProxy.EventLoop {
     private static final String TAG = "AdVpnThread";
     private static final int MIN_RETRY_TIME = 5;
     private static final int MAX_RETRY_TIME = 2 * 60;
-    /* If we had a successful connection for that long, reset retry timeout */
+    
     private static final long RETRY_RESET_SEC = 60;
-    /* Maximum number of responses we want to wait for */
+    
     private static final int DNS_MAXIMUM_WAITING = 1024;
     private static final long DNS_TIMEOUT_SEC = 10;
-    /* Upstream DNS servers, indexed by our IP */
+    
     final ArrayList<InetAddress> upstreamDnsServers = new ArrayList<>();
     private final VpnService vpnService;
     private final Notify notify;
-    /* Data to be written to the device */
+    
     private final Queue<byte[]> deviceWrites = new LinkedList<>();
     // HashMap that keeps an upper limit of packets
     private final WospList dnsIn = new WospList();
@@ -78,9 +67,7 @@ class AdVpnThread implements Runnable, DnsPacketProxy.EventLoop {
     private Thread thread = null;
     private FileDescriptor mBlockFd = null;
     private FileDescriptor mInterruptFd = null;
-    /**
-     * Number of iterations since we last cleared the pcap4j cache
-     */
+    
     private int pcap4jFactoryClearCacheCounter = 0;
 
     public AdVpnThread(VpnService vpnService, Notify notify) {
@@ -565,9 +552,7 @@ class AdVpnThread implements Runnable, DnsPacketProxy.EventLoop {
 
     }
 
-    /**
-     * Helper class holding a socket, the packet we are waiting the answer for, and a time
-     */
+    
     private static class WaitingOnSocketPacket {
         final DatagramSocket socket;
         final IpPacket packet;
@@ -584,9 +569,7 @@ class AdVpnThread implements Runnable, DnsPacketProxy.EventLoop {
         }
     }
 
-    /**
-     * Queue of WaitingOnSocketPacket, bound on time and space.
-     */
+    
     private static class WospList implements Iterable<WaitingOnSocketPacket> {
         private final LinkedList<WaitingOnSocketPacket> list = new LinkedList<WaitingOnSocketPacket>();
 

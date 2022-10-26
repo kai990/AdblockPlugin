@@ -34,10 +34,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
-/**
- * @author John
- * @since 2019-05-19 11:59
- */
+
 public class LocalVpnService extends VpnService {
 
     private static final String TAG = "VpnServiceTmp";

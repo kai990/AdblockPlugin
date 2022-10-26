@@ -2,14 +2,7 @@ package com.spaceship.netblocker.utils;
 
 import java.util.regex.Pattern;
 
-/**
- * A collection of utilities relating to InetAddresses.
- * {@link https://android.googlesource.com/platform/external/apache-http/+/android-live-tv-l-mr1/src/org/apache/http/conn/util/InetAddressUtils.java}
- *
- * @deprecated Please use {@link java.net.URL#openConnection} instead.
- * Please visit <a href="http://android-developers.blogspot.com/2011/09/androids-http-clients.html">this webpage</a>
- * for further details.
- */
+
 @Deprecated
 public class InetAddressUtils {
     private static final Pattern IPV4_PATTERN =

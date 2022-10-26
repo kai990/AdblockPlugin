@@ -15,9 +15,7 @@ import com.spaceship.netblocker.vpn_v28.core.LocalVpnService
 import com.spaceship.netblocker.utils.thread.ThreadPool.uiDelay
 
 
-/**
- * @author wangkai
- */
+
 object NetBlocker {
     private lateinit var context: Application
 
@@ -54,9 +52,7 @@ object NetBlocker {
         }
     }
 
-    /**
-     * 设置域名拦截回调
-     */
+    
     fun setDispatchHandler(dispatchHandler: ProxyDispatcher.RequestDispatchHandler) {
         proxyDispatcher.setDispatchHandler(dispatchHandler)
     }
@@ -65,9 +61,7 @@ object NetBlocker {
         return proxyDispatcher.getDispatchHandler()
     }
 
-    /**
-     * 是否拦截某个域名
-     */
+    
     fun dispatchDomain(packet: DispatchPacket): Int {
         return proxyDispatcher.dispatch(packet)
     }
@@ -76,9 +70,7 @@ object NetBlocker {
         return notification
     }
 
-    /**
-     * 允许经过VPN 网络的APP
-     */
+    
     fun setAllowedAppList(appList: List<String>) {
         blockConfig.allowedAppSet.addAll(appList)
     }

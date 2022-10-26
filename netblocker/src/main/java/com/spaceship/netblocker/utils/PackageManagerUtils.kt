@@ -4,10 +4,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import com.spaceship.netblocker.Env
 
-/**
- * @author John
- * @since 2019-06-02 11:39
- */
+
 fun getPackageInfo(context: Context, uid: Int?): AppInfo? {
     val manager = context.packageManager
     return getPackageInfo(manager, uid)

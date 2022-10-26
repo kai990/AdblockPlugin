@@ -7,10 +7,7 @@ import com.spaceship.netblocker.Env
 import com.spaceship.netblocker.utils.extensions.safeRun
 import com.spaceship.netblocker.utils.thread.ThreadPool.ui
 
-/**
- * @author John
- * @since 2019-09-06 20:52
- */
+
 
 fun toast(str: String?, isLong: Boolean = false, forTest: Boolean = false) {
     if (str.isNullOrEmpty()) return

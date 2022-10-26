@@ -35,7 +35,7 @@ object NatSessionManager {
 
     fun createSession(portKey: Int, remoteIP: Int, remotePort: Short, protocol: Int): NatSession {
         if (sessions.size() > MAX_SESSION_COUNT) {
-            clearExpiredSessions()//清理过期的会话。
+            clearExpiredSessions()
         }
 
         val session = NatSession()

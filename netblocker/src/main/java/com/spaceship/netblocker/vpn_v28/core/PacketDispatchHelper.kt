@@ -17,9 +17,7 @@ import com.spaceship.netblocker.utils.Slog
 import java.io.FileOutputStream
 import java.nio.ByteBuffer
 
-/**
- * @author wangkai
- */
+
 class PacketDispatchHelper(
     private val ipHeader: IPHeader,
     private val tcpHeader: TCPHeader,
@@ -32,7 +30,6 @@ class PacketDispatchHelper(
     fun dispatchTcp(size: Int) {
         tcpHeader.offset = ipHeader.headerLength
         if (ipHeader.sourceIP == VpnConfig.LOCAL_IP) {
-            // 收到本地TCP服务器数据
             if (tcpHeader.sourcePort == tcpProxyManager.port) {
                 val session = NatSessionManager.getSession(tcpHeader.destinationPort.toInt())
 
@@ -58,7 +55,6 @@ class PacketDispatchHelper(
 //                    outStream.close()
                 }
             } else {
-                // 添加端口映射
                 val portKey = tcpHeader.sourcePort.toInt()
                 var session = NatSessionManager.getSession(portKey)
                 if (session == null || session.remoteIP != ipHeader.destinationIP || session.remotePort != tcpHeader.destinationPort) {
@@ -71,16 +67,15 @@ class PacketDispatchHelper(
                 }
 
                 session.endTime = System.currentTimeMillis()
-                // 注意顺序
+
                 session.packetSent++
 
                 val tcpDataSize = ipHeader.dataLength - tcpHeader.headerLength
-                // 丢弃tcp握手的第二个ACK报文。因为客户端发数据的时候也会带上ACK，这样可以在服务器Accept之前分析出HOST信息。
                 if (session.packetSent == 2 && tcpDataSize == 0) {
                     return
                 }
 
-                // 分析数据，找到host
+
                 if (session.bytesSent == 0L && tcpDataSize > 10) {
                     val dataOffset = tcpHeader.offset + tcpHeader.headerLength
                     HttpRequestHeaderParser.parseHttpRequestHeader(
@@ -98,14 +93,14 @@ class PacketDispatchHelper(
                     session.url = "http://" + session.remoteHost + "/" + session.urlPath
                 }
 
-                // 转发给本地TCP服务器
+
                 ipHeader.sourceIP = ipHeader.destinationIP
                 ipHeader.destinationIP = VpnConfig.LOCAL_IP
                 tcpHeader.destinationPort = tcpProxyManager.port
 
                 CommonMethods.ComputeTCPChecksum(ipHeader, tcpHeader)
                 outStream.write(ipHeader.data, ipHeader.offset, size)
-                // 注意顺序
+
                 session.bytesSent += tcpDataSize
                 session.endTime = System.currentTimeMillis()
             }

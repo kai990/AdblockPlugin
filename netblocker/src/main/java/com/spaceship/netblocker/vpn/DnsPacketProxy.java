@@ -1,15 +1,4 @@
-/* Copyright (C) 2016-2019 Julian Andres Klode <jak@jak-linux.org>
- *
- * Derived from AdBuster:
- * Copyright (C) 2016 Daniel Brodie <dbrodie@gmail.com>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, version 3.
- *
- * Contributions shall also be provided under any later versions of the
- * GPL.
- */
+
 package com.spaceship.netblocker.vpn;
 
 import android.content.Context;
@@ -42,10 +31,7 @@ import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.util.ArrayList;
 
-/**
- * Creates and parses packets, and sends packets to a remote socket or the device using
- * {@link AdVpnThread}.
- */
+
 public class DnsPacketProxy {
 
     private static final String TAG = "DnsPacketProxy";
@@ -72,24 +58,12 @@ public class DnsPacketProxy {
         this.eventLoop = eventLoop;
     }
 
-    /**
-     * Initializes the rules database and the list of upstream servers.
-     *
-     * @param context            The context we are operating in (for the database)
-     * @param upstreamDnsServers The upstream DNS servers to use; or an empty list if no
-     *                           rewriting of ip addresses takes place
-     * @throws InterruptedException If the database initialization was interrupted
-     */
+    
     void initialize(Context context, ArrayList<InetAddress> upstreamDnsServers) throws InterruptedException {
         this.upstreamDnsServers = upstreamDnsServers;
     }
 
-    /**
-     * Handles a responsePayload from an upstream DNS server
-     *
-     * @param requestPacket   The original request packet
-     * @param responsePayload The payload of the response
-     */
+    
     void handleDnsResponse(IpPacket requestPacket, byte[] responsePayload) {
         UdpPacket udpOutPacket = (UdpPacket) requestPacket.getPayload();
         UdpPacket.Builder payLoadBuilder = new UdpPacket.Builder(udpOutPacket)
@@ -127,12 +101,7 @@ public class DnsPacketProxy {
         eventLoop.queueDeviceWrite(ipOutPacket);
     }
 
-    /**
-     * Handles a DNS request, by either blocking it or forwarding it to the remote location.
-     *
-     * @param packetData The packet data to read
-     * @throws AdVpnThread.VpnNetworkException If some network error occurred
-     */
+    
     void handleDnsRequest(byte[] packetData) throws AdVpnThread.VpnNetworkException {
 
         IpPacket parsedPacket = null;
@@ -175,7 +144,7 @@ public class DnsPacketProxy {
             // the gateway to reduce the RTT. For further details, please see
             // https://bugzilla.mozilla.org/show_bug.cgi?id=888268
             try {
-                DatagramPacket outPacket = new DatagramPacket(new byte[0], 0, 0 /* length */, destAddr, parsedUdp.getHeader().getDstPort().valueAsInt());
+                DatagramPacket outPacket = new DatagramPacket(new byte[0], 0, 0 , destAddr, parsedUdp.getHeader().getDstPort().valueAsInt());
                 eventLoop.forwardPacket(outPacket, null);
             } catch (Exception e) {
                 Slog.INSTANCE.e(e, false);
@@ -212,13 +181,7 @@ public class DnsPacketProxy {
         }
     }
 
-    /**
-     * Translates the destination address in the packet to the real one. In
-     * case address translation is not used, this just returns the original one.
-     *
-     * @param parsedPacket Packet to get destination address for.
-     * @return The translated address or null on failure.
-     */
+    
     private InetAddress translateDestinationAdress(IpPacket parsedPacket) {
         InetAddress destAddr = null;
         if (upstreamDnsServers.size() > 0) {
@@ -239,25 +202,12 @@ public class DnsPacketProxy {
         return destAddr;
     }
 
-    /**
-     * Interface abstracting away {@link AdVpnThread}.
-     */
+    
     interface EventLoop {
-        /**
-         * Called to send a packet to a remote location
-         *
-         * @param packet        The packet to send
-         * @param requestPacket If specified, the event loop must wait for a response, and then
-         *                      call {@link #handleDnsResponse(IpPacket, byte[])} for the data
-         *                      of the response, with this packet as the first argument.
-         */
+        
         void forwardPacket(DatagramPacket packet, IpPacket requestPacket) throws AdVpnThread.VpnNetworkException;
 
-        /**
-         * Write an IP packet to the local TUN device
-         *
-         * @param packet The packet to write (a response to a DNS request)
-         */
+        
         void queueDeviceWrite(IpPacket packet);
     }
 }

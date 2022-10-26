@@ -9,10 +9,7 @@ import java.util.concurrent.Executors
 import java.util.concurrent.RejectedExecutionException
 import java.util.concurrent.TimeUnit
 
-/**
- * @author John
- * @since 2018-12-01 10:36
- */
+
 object ThreadPool {
     private val CPU_COUNT = Runtime.getRuntime().availableProcessors()
 
