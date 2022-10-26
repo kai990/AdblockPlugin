@@ -54,6 +54,7 @@
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
             android:taskAffinity=""
+            android:exported="true"
             android:theme="@style/Theme.AppCompat.Translucent" />
     </application>
 
