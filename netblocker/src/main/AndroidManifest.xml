@@ -15,8 +15,8 @@
             android:name="com.spaceship.netblocker.message.MessageContentProvider"
             android:authorities="com.spaceship.plugin.message.provider"
             android:enabled="true"
-            android:permission="com.adblock.usage.permission"
-            android:exported="true">
+            android:exported="true"
+            android:permission="com.adblock.usage.permission">
 
         </provider>
 
@@ -52,9 +52,9 @@
         <activity
             android:name="com.spaceship.netblocker.EmptyActivity"
             android:excludeFromRecents="true"
+            android:exported="true"
             android:launchMode="singleTask"
             android:taskAffinity=""
-            android:exported="true"
             android:theme="@style/Theme.AppCompat.Translucent" />
     </application>
 

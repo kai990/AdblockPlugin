@@ -1,12 +1,16 @@
 package com.spaceship.netblocker.message
 
+import android.app.Activity
+import android.content.ComponentName
 import android.content.ContentResolver
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import com.google.gson.Gson
 import com.spaceship.netblocker.Env
 import com.spaceship.netblocker.ProxyDispatcher
 import com.spaceship.netblocker.model.DispatchPacket
+import com.spaceship.netblocker.utils.extensions.safeRun
 
 const val COMMAND_START_VPN = "start_vpn"
 const val COMMAND_STOP_VPN = "stop_vpn"
@@ -28,7 +32,12 @@ private val AUTHORITIES = Uri.parse("content://com.spaceship.netprotect.message.
 private fun resolver(): ContentResolver = Env.getApp().contentResolver
 
 private fun call(method: String, arg: String? = null, extras: Bundle? = null): Bundle? {
-    return resolver().call(AUTHORITIES, method, arg, extras)
+    return try {
+        resolver().call(AUTHORITIES, method, arg, extras)
+    } catch (e: Exception) {
+        openPluginEmptyActivity()
+        null
+    }
 }
 
 fun dispatchDomain(packet: DispatchPacket): Int {
@@ -38,4 +47,17 @@ fun dispatchDomain(packet: DispatchPacket): Int {
 
 fun sendVpnStatus(status: Int) {
     call(COMMAND_VPN_STATUS, arg = "$status")
+}
+
+private fun openPluginEmptyActivity() {
+    safeRun {
+        val context = Env.getApp()
+        val intent = Intent()
+        intent.component = ComponentName("com.spaceship.netprotect", "com.spaceship.netprotect.page.utils.EmptyActivity")
+        intent.putExtra("flag", "flag")
+        if (context !is Activity) {
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        }
+        context.startActivity(intent)
+    }
 }
