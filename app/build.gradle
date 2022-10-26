@@ -3,6 +3,11 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+def signAlias = properties.getProperty('signAlias')
+def signPassword = properties.getProperty('signPassword')
+def signStorePassword = properties.getProperty('signStorePassword')
 android {
     namespace 'com.spaceship.adblock.plugin'
     compileSdk 33
@@ -17,9 +22,27 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
+    signingConfigs {
         release {
+            keyAlias signAlias
+            keyPassword signPassword
+            storeFile file('sign.jks')
+            storePassword signStorePassword
+        }
+    }
+
+    buildTypes {
+        debug {
             minifyEnabled false
+            multiDexEnabled true
+            debuggable true
+            signingConfig signingConfigs.release
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            debuggable false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
