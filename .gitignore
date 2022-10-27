@@ -17,3 +17,4 @@ fabric.properties
 /generate
 *.aab
 *.jks
+/app/release
