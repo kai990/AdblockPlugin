@@ -10,12 +10,12 @@ def signPassword = properties.getProperty('signPassword')
 def signStorePassword = properties.getProperty('signStorePassword')
 android {
     namespace 'com.spaceship.adblock.plugin'
-    compileSdk 33
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.spaceship.adblock.plugin"
         minSdk 21
-        targetSdk 33
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 
