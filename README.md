@@ -1,7 +1,7 @@
 # VPN plugin for Adblock.
 
 ## Reason for development:
-Because Google Play prohibits non-VPN apps from using the VPN function, we separate the VPN function.
+Due to the particularity of VPN services, we have open sourced the VPN module, you can check the source code to make sure we don't do anything dangerous.
 
 This plugin is open source, safe, and only for blocking ads.
 
