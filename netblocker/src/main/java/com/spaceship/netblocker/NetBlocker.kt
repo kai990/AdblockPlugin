@@ -8,6 +8,7 @@ import android.text.format.DateUtils
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.spaceship.netblocker.model.DispatchPacket
 import com.spaceship.netblocker.notification.VpnNotification
+import com.spaceship.netblocker.utils.extensions.safeRun
 import com.spaceship.netblocker.vpn.AdVpnService
 import com.spaceship.netblocker.vpn.Command
 import com.spaceship.netblocker.vpn.VpnConfig
@@ -88,16 +89,18 @@ object NetBlocker {
     }
 
     private fun startServiceInternal() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            val intent = Intent(context, AdVpnService::class.java)
-            intent.putExtra("COMMAND", Command.START.ordinal)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                context.startForegroundService(intent)
+        safeRun {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                val intent = Intent(context, AdVpnService::class.java)
+                intent.putExtra("COMMAND", Command.START.ordinal)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    context.startForegroundService(intent)
+                } else {
+                    context.startService(intent)
+                }
             } else {
-                context.startService(intent)
+                LocalVpnService.start(context)
             }
-        } else {
-            LocalVpnService.start(context)
         }
     }
 

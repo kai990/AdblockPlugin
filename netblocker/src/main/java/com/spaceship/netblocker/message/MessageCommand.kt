@@ -42,7 +42,7 @@ private fun call(method: String, arg: String? = null, extras: Bundle? = null): B
 
 fun dispatchDomain(packet: DispatchPacket): Int {
     val bundle = call(COMMAND_DOMAIN_DISPATCH, arg = Gson().toJson(packet))
-    return bundle?.getInt("COMMAND_INT_PARAM") ?: ProxyDispatcher.TYPE_DIRECT
+    return bundle?.getInt(COMMAND_INT_PARAM) ?: ProxyDispatcher.TYPE_DIRECT
 }
 
 fun sendVpnStatus(status: Int) {
