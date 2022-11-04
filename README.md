@@ -8,7 +8,7 @@ This plugin is open source, safe, and only for blocking ads.
 ## How to use.
 This application is only used as a plug-in of Adblock. Whether the specific advertisement is blocked is judged in Adblock. It will only send an ambiguous URL to Adblock to determine whether the request is an advertisement.
 
-## [Download](https://github.com/kai990/AdblockPlugin/releases/download/v0.1/app-release.apk)
+## [Download](https://github.com/kai990/AdblockPlugin/releases/download/v0.2/app-release.apk)
 
 ## License
 See the [LICENSE](https://github.com/kai990/AdblockPlugin/blob/master/LICENSE.md) file for details.
